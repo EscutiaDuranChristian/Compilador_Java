@@ -1,7 +1,6 @@
 ﻿using Compilador_Java.Info_Lenguaje;
 using Compilador_Java.Lexico.Simbolos;
 using Compilador_Java.Lexico.Tokens.Table;
-using System.Runtime.CompilerServices;
 
 namespace Compilador_Java.Sintactico.GCL.Context;
 public class GramarContext
@@ -16,11 +15,11 @@ public class GramarContext
 
     public TokenRow At(int k)
     {
-        if (k + CurrentTokenIndex < SymbolTable.Count - 1 &&
+        if (k + CurrentTokenIndex < SymbolTable.Count &&
             k + CurrentTokenIndex >= 0)
             return SymbolTable[k + CurrentTokenIndex].token;
         else return Reservadas.EOF;
     }
-    public bool Eof => CurrentTokenIndex >= SymbolTable.Count - 1;
+    public bool Eof => CurrentTokenIndex >= SymbolTable.Count;
     public void Advance(int s=1) => CurrentTokenIndex+=s;
 }

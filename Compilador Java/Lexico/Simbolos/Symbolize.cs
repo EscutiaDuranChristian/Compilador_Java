@@ -27,7 +27,6 @@ public class Symbolize
             }
             else symbols.Add(new(null, token));
         }
-        symbols.Add(new(null, Reservadas.EOF));
         return symbols;
     }
 }

@@ -10,8 +10,12 @@ public class IfEl : RuleBase<IfEl>
         Expect(TokensJava.PA.Name());
         Exp.Instance!.Ejec(); 
         Expect(TokensJava.PC.Name());
+        RaiseDetectValidInst("IF");
         Bloque.Instance!.Ejec();
         if (Accept(TokensJava.PRE.Name()))
-        Bloque.Instance!.Ejec();
+        {
+            Bloque.Instance!.Ejec();
+            RaiseDetectValidInst("ELSE");
+        }
     }
 }

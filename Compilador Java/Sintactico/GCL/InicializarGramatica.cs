@@ -21,7 +21,7 @@ public static class InicializarGramatica
         new Imports();
         new Inst();
         new Java();
-        new Main();
+        new PMain();
         new Metodo();
         new Param();
         new Switch();

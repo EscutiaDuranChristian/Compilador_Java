@@ -13,9 +13,8 @@ public class Term : RuleBase<Term>
     public override void Ejec()
     {
         string c = Ctx.CurrentToken().Tipo;
-        if(EXPU(c)) return;
-        if(EXP(c)) return;
-        if(ACC(c)) return;
+        if (EXPU(c) || EXP(c) || ACC(c)) 
+            return; 
         Val.Instance!.Ejec();
     }
     public bool EXPU(string c)
@@ -25,7 +24,8 @@ public class Term : RuleBase<Term>
             c == TokensJava.OPB.Name() ||
             c == TokensJava.OPN.Name())
         {
-            Ctx.Advance();
+
+            Avanzar();
             Val.Instance!.Ejec();
             return true;
         }
@@ -35,7 +35,7 @@ public class Term : RuleBase<Term>
     {
         if (c == TokensJava.PA.Name())
         {
-            Ctx.Advance();
+            Avanzar();
             Exp.Instance!.Ejec();
             Expect(TokensJava.PC.Name()); 
             return true;
@@ -47,12 +47,12 @@ public class Term : RuleBase<Term>
         if (c == TokensJava.ID.Name() || c == TokensJava.VTS.Name())
         {
             bool esId = c == TokensJava.ID.Name();
-            Ctx.Advance();
+            Avanzar();
             OT();
             if (esId &&
                 (Ctx.CurrentToken().Tipo == TokensJava.INC.Name() ||
                  Ctx.CurrentToken().Tipo == TokensJava.DEC.Name()))
-                Ctx.Advance(); // x++ / x-- (postfijo)
+                Avanzar(); // x++ / x-- (postfijo)
             return true;
         }
         return false;
@@ -61,7 +61,7 @@ public class Term : RuleBase<Term>
     {
         while (Ctx.CurrentToken().Tipo == TokensJava.CA.Name())
         {
-            Ctx.Advance();
+            Avanzar();
             Expect(TokensJava.ID.Name());
             if (Accept(TokensJava.PA.Name()))
             {

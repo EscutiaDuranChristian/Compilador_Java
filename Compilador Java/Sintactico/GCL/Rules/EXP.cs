@@ -10,7 +10,7 @@ public class Exp : RuleBase<Exp>
                Ctx.CurrentToken().Tipo == TokensJava.OPL.Name()  || 
                Ctx.CurrentToken().Tipo == TokensJava.XOR.Name())
         {
-            Ctx.Advance();
+            Avanzar();
             Term.Instance!.Ejec();
         }
     }

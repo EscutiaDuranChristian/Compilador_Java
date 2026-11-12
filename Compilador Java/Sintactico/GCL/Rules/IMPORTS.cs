@@ -12,6 +12,7 @@ public class Imports : RuleBase<Imports>
             Expect(TokensJava.CA.Name());
             Expect(TokensJava.ID.Name());
             Expect(TokensJava.FI.Name());
+            RaiseDetectValidInst();
         }
     }
 }

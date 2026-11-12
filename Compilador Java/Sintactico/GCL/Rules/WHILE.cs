@@ -8,6 +8,7 @@ public class While : RuleBase<While>
         Expect(TokensJava.PA.Name()); 
         Exp.Instance!.Ejec();
         Expect(TokensJava.PC.Name());
+        RaiseDetectValidInst();
         Bloque.Instance!.Ejec();
     }
 }

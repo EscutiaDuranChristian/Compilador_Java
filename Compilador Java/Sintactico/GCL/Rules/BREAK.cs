@@ -6,5 +6,6 @@ public class Break : RuleBase<Break>
     {
         if (Accept(TokensJava.BR.Name())) 
             Expect(TokensJava.FI.Name());
+        RaiseDetectValidInst();
     }
 }

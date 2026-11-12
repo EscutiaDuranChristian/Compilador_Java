@@ -3,13 +3,14 @@ using Compilador_Java.Lexico.Simbolos;
 using Compilador_Java.Lexico.Tokens;
 using Compilador_Java.Errores;
 using Compilador_Java.Sintactico;
+using DI = Compilador_Java.Recopilar_Instrucciones.DetectorInstrucciones;
 namespace Compilador_Java.Compilacion;
 public class Compilar
 {
     public static (bool, List<Symbol>?) CompilarCodigo(string source)
     {
+        new DI();
         Depurar.Limpiar(ref source);
-        Console.WriteLine(source);
         if (!Depurar.ValidarEsCodigoJava(source))
         {
             CompilerException.AddException("BAD SOURCE");
@@ -20,6 +21,8 @@ public class Compilar
         var symbols = Symbolize.SymbolTable(tokens);
         SyntaxAnalyzer.Analizar(symbols);
         if (CompilerException.HasExceptions()) return (false, symbols);
+        Console.WriteLine(DI.Instance!.Instrucciones.Count);
+        Console.WriteLine(string.Join("\n",DI.Instance!.Instrucciones));
         return (true, symbols);
     }
     public static List<(string, string)> MostrarErrores() => 

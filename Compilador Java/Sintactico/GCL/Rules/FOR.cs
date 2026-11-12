@@ -23,7 +23,7 @@ public class  For : RuleBase<For>
             Ctx.At(1).Tipo == TokensJava.ODA.Name())
             Asig.Instance!.Ejec();
         else if (Ctx.CurrentToken().Tipo == TokensJava.FI.Name())
-            Ctx.Advance();
+            Avanzar();
         else
         {
             Exp.Instance!.Ejec();
@@ -42,7 +42,7 @@ public class  For : RuleBase<For>
         {
             if (Ctx.CurrentToken().Tipo == TokensJava.ID.Name() &&
                 Ctx.At(1).Tipo == TokensJava.ODA.Name()) { 
-                Ctx.Advance(2); 
+                Avanzar(2); 
                 Exp.Instance!.Ejec(); 
             }
             else Exp.Instance!.Ejec();

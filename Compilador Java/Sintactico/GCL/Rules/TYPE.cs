@@ -5,7 +5,7 @@ public class Type : RuleBase<Type>
     public override void Ejec()
     {
         if (Ctx.CurrentToken().Tipo == TokensJava.TM.Name())
-            Ctx.Advance(); 
+            Avanzar(); 
         else Ty.Instance!.Ejec();
     }
 }

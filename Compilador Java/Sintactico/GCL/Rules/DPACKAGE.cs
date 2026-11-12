@@ -11,6 +11,7 @@ public class DPackage : RuleBase<DPackage>
             Expect(TokensJava.PCK.Name());
             Expect(TokensJava.ID.Name());
             Expect(TokensJava.FI.Name());
+            RaiseDetectValidInst();
         }
     }
 }

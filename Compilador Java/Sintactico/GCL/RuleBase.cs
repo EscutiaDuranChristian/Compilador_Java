@@ -1,4 +1,5 @@
-﻿using Compilador_Java.Sintactico.GCL.Context;
+﻿using Compilador_Java.Lexico.Tokens.Table;
+using Compilador_Java.Sintactico.GCL.Context;
 using Compilador_Java.Sintactico.Result;
 
 namespace Compilador_Java.Sintactico.GCL;
@@ -6,6 +7,14 @@ public abstract class RuleBase
 {
     public static GramarContext Ctx { get; private set; } = new(new());
     public static void SetContext(GramarContext ctx) => Ctx = ctx;
+    public static event Action<TokenRow>? OnAcceptToken;
+    public static event Action<string>? OnDetectValidInst;
+    protected string classname = "";
+    protected string successMessage() => $"{classname} Detectado!"; 
+    protected void RaiseAcceptToken(TokenRow tk) =>
+        OnAcceptToken?.Invoke(tk);
+    protected void RaiseDetectValidInst(string msg = "") =>
+        OnDetectValidInst?.Invoke(msg == "" ? successMessage() : msg);
 }
 
 public abstract class RuleBase<T> : RuleBase where T : RuleBase<T>
@@ -15,6 +24,7 @@ public abstract class RuleBase<T> : RuleBase where T : RuleBase<T>
     public RuleBase()
     {
         if (Instance == null) Instance = (T)this;
+        classname = typeof(T).Name;
     }
 
     protected static SyntaxException Error(string esperado)
@@ -34,16 +44,21 @@ public abstract class RuleBase<T> : RuleBase where T : RuleBase<T>
     {
         if (Ctx.CurrentToken().Tipo != tipo) 
             throw Error(tipo);
-        Ctx.Advance();
+        Avanzar();
     }
 
     protected bool Accept(string tipo)
     {
         if (Ctx.CurrentToken().Tipo != tipo) 
             return false;
-        Ctx.Advance();
+        Avanzar();
         return true;
     }
 
+    protected void Avanzar(int s=1)
+    {
+        RaiseAcceptToken(Ctx.CurrentToken());
+        Ctx.Advance(s);
+    }
     public abstract void Ejec();
 }

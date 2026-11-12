@@ -11,8 +11,9 @@ public class Inst : RuleBase<Inst>
             case "STR": DecOrObj.Instance!.Ejec(); break;
             case "ID": HandleIDCase(); break;
             case "VTS":
-                Exp.Instance!.Ejec(); 
-                Expect(TokensJava.FI.Name()); 
+                Exp.Instance!.Ejec();
+                Expect(TokensJava.FI.Name());
+                RaiseDetectValidInst();
                 break;             
             case "PRW": While.Instance!.Ejec(); break;
             case "PRIF": IfEl.Instance!.Ejec(); break;
@@ -31,6 +32,7 @@ public class Inst : RuleBase<Inst>
             default: 
                 Exp.Instance!.Ejec();
                 Expect(TokensJava.FI.Name());
+                RaiseDetectValidInst();
                 break;
         }
     }

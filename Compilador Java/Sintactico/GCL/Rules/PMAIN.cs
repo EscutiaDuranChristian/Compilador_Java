@@ -1,6 +1,6 @@
 ﻿using Compilador_Java.Info_Lenguaje;
 namespace Compilador_Java.Sintactico.GCL.Rules;
-public class Main : RuleBase<Main>
+public class PMain : RuleBase<PMain>
 {
     public override void Ejec()
     {
@@ -21,6 +21,7 @@ public class Main : RuleBase<Main>
             Expect(TokensJava.ID.Name()); 
         }
         Expect(TokensJava.PC.Name());
+        RaiseDetectValidInst();
         Bloque.Instance!.Ejec();
     }
 }

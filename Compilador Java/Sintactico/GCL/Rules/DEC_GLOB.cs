@@ -7,5 +7,6 @@ public class DecGlob : RuleBase<DecGlob>
     {
         Accept(TokensJava.MA.Name());
         DecOrObj.Instance!.Ejec();
+        RaiseDetectValidInst();
     }
 }

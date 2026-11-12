@@ -10,7 +10,7 @@ public class Varios : RuleBase<Varios>
             Ctx.At(1).Tipo == TokensJava.ST.Name() && 
             Ctx.At(2).Tipo == TokensJava.TM.Name() && 
             Ctx.At(3).Tipo == TokensJava.PMAIN.Name()) 
-            Main.Instance!.Ejec();
+            PMain.Instance!.Ejec();
         else if (Ctx.EsMetodo()) Metodo.Instance!.Ejec();
         else DecGlob.Instance!.Ejec();
     }

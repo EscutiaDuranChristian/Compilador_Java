@@ -7,6 +7,6 @@ public class Ty : RuleBase<Ty>
     {
         if (!Ctx.CurrentToken().IsTY()) 
             throw Error("un tipo (ID, TD o STR)");
-        Ctx.Advance();
+        Avanzar();
     }
 }

@@ -9,18 +9,22 @@ public class Switch : RuleBase<Switch>
         Expect(TokensJava.PA.Name());
         Val.Instance!.Ejec();
         Expect(TokensJava.PC.Name());
+        RaiseDetectValidInst();
         Expect(TokensJava.LLA.Name());
+        RaiseDetectValidInst("CASES BEGIN");
         CASE();
         C_DEF();
         Expect(TokensJava.LLC.Name());
+        RaiseDetectValidInst("CASES END");
     }
     public void CASE()
     {
         while (Ctx.CurrentToken().Tipo == TokensJava.CS.Name())                             
         {
-            Ctx.Advance();
+            Avanzar();
             Val.Instance!.Ejec();
             Expect(TokensJava.DOP.Name());
+            RaiseDetectValidInst("CASE");
             Cuerpo.Instance!.Ejec();
             Break.Instance!.Ejec();
         }
@@ -30,6 +34,7 @@ public class Switch : RuleBase<Switch>
         if (Accept(TokensJava.DF.Name()))                               
         {
             Expect(TokensJava.DOP.Name());
+            RaiseDetectValidInst("CASE_DEFAULT");
             Cuerpo.Instance!.Ejec(); 
             Break.Instance!.Ejec();
         }

@@ -8,5 +8,6 @@ public class Asig : RuleBase<Asig>
         Expect(TokensJava.ODA.Name()); 
         Exp.Instance!.Ejec(); 
         Expect(TokensJava.FI.Name());
+        RaiseDetectValidInst();
     }
 }

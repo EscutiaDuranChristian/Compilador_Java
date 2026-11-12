@@ -13,7 +13,7 @@ public class Val : RuleBase<Val>
             c == TokensJava.ID.Name()  ||
             c == TokensJava.VTF.Name() || 
             c == TokensJava.VTC.Name()) {
-            Ctx.Advance();
+            Avanzar();
             return; 
         }
         throw Error("un valor (VTE, VTD, VTS, VTB, ID, VTF o VTC)");

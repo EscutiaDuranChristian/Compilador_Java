@@ -1,4 +1,5 @@
-﻿using Compilador_Java.Lexico.Tokens.Table;
+﻿using Compilador_Java.Info_Lenguaje;
+using Compilador_Java.Lexico.Tokens.Table;
 using Compilador_Java.Sintactico.GCL.Context;
 using Compilador_Java.Sintactico.Result;
 
@@ -57,6 +58,15 @@ public abstract class RuleBase<T> : RuleBase where T : RuleBase<T>
 
     protected void Avanzar(int s=1)
     {
+        if (Ctx.CurrentToken().Tipo == TokensJava.ID.Name() &&
+            Ctx.CurrentSymbol().ID != null)
+        {
+            string id = Ctx.CurrentSymbol().ID.ToString()!;
+            if (Ctx.CurrentSymbol().ID < 10)
+                id = '0' + id;
+            id = "ID" + id;
+            Ctx.CurrentToken().Lexema = id;
+        }
         RaiseAcceptToken(Ctx.CurrentToken());
         Ctx.Advance(s);
     }

@@ -4,6 +4,7 @@ public class Cuerpo : RuleBase<Cuerpo>
 {
     public override void Ejec()
     {
-        while (Ctx.CurrentToken().EmpiezaInst()) Inst.Instance!.Ejec();
+        while (Ctx.CurrentToken().EmpiezaInst()) 
+            Inst.Instance!.Ejec();
     }
 }

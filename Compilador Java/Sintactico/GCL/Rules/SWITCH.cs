@@ -1,4 +1,5 @@
 ﻿using Compilador_Java.Info_Lenguaje;
+using Compilador_Java.Recopilar_Instrucciones;
 
 namespace Compilador_Java.Sintactico.GCL.Rules;
 public class Switch : RuleBase<Switch>
@@ -11,11 +12,11 @@ public class Switch : RuleBase<Switch>
         Expect(TokensJava.PC.Name());
         RaiseDetectValidInst();
         Expect(TokensJava.LLA.Name());
-        RaiseDetectValidInst("CASES BEGIN");
+        RaiseDetectValidInst(INE.CASES_BEGIN.Name());
         CASE();
         C_DEF();
         Expect(TokensJava.LLC.Name());
-        RaiseDetectValidInst("CASES END");
+        RaiseDetectValidInst(INE.CASES_END.Name());
     }
     public void CASE()
     {
@@ -24,7 +25,7 @@ public class Switch : RuleBase<Switch>
             Avanzar();
             Val.Instance!.Ejec();
             Expect(TokensJava.DOP.Name());
-            RaiseDetectValidInst("CASE");
+            RaiseDetectValidInst(INE.CASE.Name());
             Cuerpo.Instance!.Ejec();
             Break.Instance!.Ejec();
         }
@@ -34,7 +35,7 @@ public class Switch : RuleBase<Switch>
         if (Accept(TokensJava.DF.Name()))                               
         {
             Expect(TokensJava.DOP.Name());
-            RaiseDetectValidInst("CASE_DEFAULT");
+            RaiseDetectValidInst(INE.CASE_DEFAULT.Name());
             Cuerpo.Instance!.Ejec(); 
             Break.Instance!.Ejec();
         }

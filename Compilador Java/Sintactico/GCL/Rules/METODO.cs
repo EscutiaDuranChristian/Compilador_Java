@@ -7,7 +7,8 @@ public class Metodo : RuleBase<Metodo>
     {
         Expect(TokensJava.MA.Name());
         Type.Instance!.Ejec();
-        Expect(TokensJava.ID.Name()); Expect(TokensJava.PA.Name());
+        Expect(TokensJava.ID.Name()); 
+        Expect(TokensJava.PA.Name());
         if (Ctx.CurrentToken().Tipo != TokensJava.PC.Name())                                // PARAMS
         {
             Param.Instance!.Ejec();
@@ -15,6 +16,7 @@ public class Metodo : RuleBase<Metodo>
                 Param.Instance!.Ejec();
         }
         Expect(TokensJava.PC.Name());
+        RaiseDetectValidInst();
         Expect(TokensJava.LLA.Name());
         Cuerpo.Instance!.Ejec();
         if (Accept(TokensJava.RTN.Name()))                            

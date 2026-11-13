@@ -19,6 +19,7 @@ public class Compilar
         var tokens = Tokenizer.TokenTable(source);
         if(tokens == null) return (false, null);
         var symbols = Symbolize.SymbolTable(tokens);
+        Console.WriteLine(string.Join('\n', symbols));
         SyntaxAnalyzer.Analizar(symbols);
         if (CompilerException.HasExceptions()) return (false, symbols);
         Console.WriteLine(DI.Instance!.Instrucciones.Count);

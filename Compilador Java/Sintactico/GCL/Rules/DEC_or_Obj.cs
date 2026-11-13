@@ -8,7 +8,7 @@ public class DecOrObj : RuleBase<DecOrObj>
         bool tipoId = Ctx.CurrentToken().Tipo == TokensJava.ID.Name();
         Ty.Instance!.Ejec(); 
         Expect(TokensJava.ID.Name());
-        if (Accept(TokensJava.FI.Name())) return;
+        if (Accept(TokensJava.FI.Name())){ RaiseDetectValidInst(); return; }
         Expect(TokensJava.ODA.Name());
         if (Ctx.CurrentToken().Tipo == TokensJava.NW.Name())
         {
@@ -17,7 +17,7 @@ public class DecOrObj : RuleBase<DecOrObj>
             Expect(TokensJava.ID.Name()); 
             Expect(TokensJava.PA.Name());
             Args.Instance!.Ejec(); 
-            Expect(TokensJava.PC.Name()); 
+            Expect(TokensJava.PC.Name());
             Expect(TokensJava.FI.Name());
             RaiseDetectValidInst();
             return;

@@ -8,5 +8,10 @@ public class TokenRow
         Lexema = lexema;
         Tipo = tipo;
     }
+    public TokenRow(TokenRow tk)
+    {
+        Lexema = tk.Lexema;
+        Tipo = tk.Tipo;
+    }
     public override string ToString() => $"{Lexema}";
 }

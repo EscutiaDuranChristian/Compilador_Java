@@ -1,5 +1,5 @@
 ﻿using Compilador_Java.Compilacion;
-string codigoJava = """
+string codigoJava1 = """
 package facil;
 public class Mierco
 {
@@ -34,8 +34,11 @@ public class Mierco
         while(true){
             System.out.println("No infinito");
         }
+        for(int i = 0; i < 5; i++){
+            System.out.println("Hello neighbor"+i);
+        }
     }
 }
 """;
 
-Console.WriteLine(string.Join("\n", Compilar.CompilarCodigo(codigoJava).Item1));
+Console.WriteLine(string.Join("\n", Compilar.CompilarCodigo(codigoJava1).Item1));

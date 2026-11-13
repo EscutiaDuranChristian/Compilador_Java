@@ -26,6 +26,4 @@ public class Compilar
         Console.WriteLine(string.Join("\n",DI.Instance!.Instrucciones));
         return (true, symbols);
     }
-    public static List<(string, string)> MostrarErrores() => 
-        CompilerException.GetExceptions();
 }

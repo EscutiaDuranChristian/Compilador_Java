@@ -31,7 +31,6 @@ public abstract class RuleBase<T> : RuleBase where T : RuleBase<T>
     protected static SyntaxException Error(string esperado)
     {
         int i_token = Ctx.CurrentTokenIndex;
-
         string encontrado = Ctx.Eof
             ? "fin de la tabla"
             : $"'{Ctx.CurrentToken().Lexema}' ({Ctx.CurrentToken().Tipo})";

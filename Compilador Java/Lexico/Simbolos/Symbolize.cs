@@ -15,7 +15,7 @@ public class Symbolize
             if (token.Tipo == TokensJava.ID.Name())
             {
                 Symbol? s = symbols.Find(x => x.token.Lexema == lexema);
-                if (SystemMethods.Methods.ContainsKey(lexema))
+                if (SystemMethods.JavaMethods.ContainsKey(lexema))
                     i = null;
                 else if (s != null) { 
                     lexema = $"ID{s.IdToString()}"; 

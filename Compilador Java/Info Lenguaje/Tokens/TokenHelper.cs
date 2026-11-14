@@ -34,4 +34,29 @@ public static class TokenHelper
                c == TokensJava.PRSW.Name() ||
                c == TokensJava.PRF.Name();
     }
+
+    public static TokensJava? TD2VAL(this TokenRow tk)
+    {
+        if (tk.Tipo != TokensJava.STR.Name() ||
+            tk.Tipo != TokensJava.TD.Name())
+            return null;
+
+        if (tk.Lexema == "char") return TokensJava.VTC;
+        if (tk.Lexema == "int") return TokensJava.VTE;
+        if (tk.Tipo == TokensJava.STR.Name()) return TokensJava.VTS;
+        if (tk.Lexema == "float") return TokensJava.VTF;
+        if (tk.Lexema == "boolean") return TokensJava.VTB;
+        if (tk.Lexema == "double") return TokensJava.VTD;
+        
+        return null;
+    }
+
+    public static bool IsVAL(string c) =>
+            c == TokensJava.VTE.Name() ||
+            c == TokensJava.VTD.Name() ||
+            c == TokensJava.VTS.Name() ||
+            c == TokensJava.VTB.Name() ||
+            c == TokensJava.ID.Name() ||
+            c == TokensJava.VTF.Name() ||
+            c == TokensJava.VTC.Name();
 }

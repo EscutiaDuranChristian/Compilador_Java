@@ -38,6 +38,7 @@ public class Mierco
         for(int i = 0; i < 5; i++){
             System.out.println("Hello neighbor"+i);
         }
+
     }
 }
 """;
@@ -59,6 +60,23 @@ string codigoJava2 = """
         }
     }
     """;
-
-Compilar.CompilarCodigo(codigoJava1);
+string codigo3 = """
+    package automatas;
+    import java.util.Scanner;
+    public class Uno{
+        public double dos(int t, float c){
+            return t/3+11*2-c;
+        }
+        public static void main(String[] args){
+            Uno obj = new Uno();
+            char siete = (char)(obj.dos('2',0.5f));
+            String cad = "SISTEMAS";
+            System.out.println(siete + "BARCO".substring(3,4) + (char)81+cad.charAt(5));
+            Random random = new Random();
+            Scanner sc = new Scanner();
+            int numero2 = numero1 * sc.nextInt() * Math.random();
+        }
+    }
+    """;
+Compilar.CompilarCodigo(codigo3);
 Console.WriteLine(string.Join("\n", CompilerException.GetExceptions()));

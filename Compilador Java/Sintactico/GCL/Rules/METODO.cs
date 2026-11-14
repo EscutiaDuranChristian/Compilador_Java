@@ -1,4 +1,5 @@
 ﻿using Compilador_Java.Info_Lenguaje;
+using Compilador_Java.Recopilar_Instrucciones;
 namespace Compilador_Java.Sintactico.GCL.Rules;
 
 public class Metodo : RuleBase<Metodo>
@@ -18,13 +19,16 @@ public class Metodo : RuleBase<Metodo>
         Expect(TokensJava.PC.Name());
         RaiseDetectValidInst();
         Expect(TokensJava.LLA.Name());
+        RaiseDetectValidInst(INE.METHOD_START.Name());
         Cuerpo.Instance!.Ejec();
         if (Accept(TokensJava.RTN.Name()))                            
         {
             if (Ctx.CurrentToken().Tipo != TokensJava.FI.Name()) 
                 Exp.Instance!.Ejec();
             Expect(TokensJava.FI.Name());
+            RaiseDetectValidInst(INE.METHOD_RETURN.Name());
         }
         Expect(TokensJava.LLC.Name());
+        RaiseDetectValidInst(INE.METHOD_END.Name());
     }
 }

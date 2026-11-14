@@ -36,8 +36,7 @@ public class Term : RuleBase<Term>
         if (c == TokensJava.PA.Name())
         {
             Avanzar();
-            if(Ctx.CurrentToken().Tipo == TokensJava.TD.Name() ||
-               Ctx.CurrentToken().Tipo == TokensJava.ID.Name())
+            if(Ctx.CurrentToken().Tipo == TokensJava.TD.Name())
             {
                 Avanzar();
                 Expect(TokensJava.PC.Name());

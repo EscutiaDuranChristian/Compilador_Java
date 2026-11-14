@@ -14,7 +14,10 @@ public enum INE
     ELSE,
     START_FOR_PART,
     FOR_PART,
-    END_FOR_PARTS
+    END_FOR_PARTS,
+    METHOD_START,
+    METHOD_RETURN,
+    METHOD_END
 }
 public static class InstNameEnumHelper
 {

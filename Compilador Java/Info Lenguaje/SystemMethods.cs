@@ -9,8 +9,12 @@ public class SystemMethods
             { "out", new(MethodType.CL) },
             { "println", new(MethodType.Print)},
             { "print", new(MethodType.Print)},
-            { "read", new(MethodType.Read) },
-            { "in", new(MethodType.CL) } 
+            { "in", new(MethodType.CL) },
+            { "Scanner", new(MethodType.CL) },
+            { "nextInt", new(MethodType.Read) },
+            { "nextDouble", new(MethodType.Read) },
+            { "Math", new(MethodType.CL) },
+            { "random", new(MethodType.Method) }
         };
     //Posible solucion
     public void Out(object o) => Console.WriteLine();
@@ -25,5 +29,6 @@ public enum MethodType
 {
     Print,
     Read,
-    CL
+    CL,
+    Method
 }

@@ -29,7 +29,7 @@ public class Inst : RuleBase<Inst>
         {
             case "ID": DecOrObj.Instance!.Ejec(); break;
             case "ODA": Asig.Instance!.Ejec(); break;
-            default: 
+            default:
                 Exp.Instance!.Ejec();
                 Expect(TokensJava.FI.Name());
                 RaiseDetectValidInst();

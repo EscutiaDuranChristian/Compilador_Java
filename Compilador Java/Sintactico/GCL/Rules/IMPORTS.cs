@@ -9,8 +9,8 @@ public class Imports : RuleBase<Imports>
         {
             Expect(TokensJava.IMP.Name());
             Expect(TokensJava.ID.Name());
-            Expect(TokensJava.CA.Name());
-            Expect(TokensJava.ID.Name());
+            while(Accept(TokensJava.CA.Name()))
+                Expect(TokensJava.ID.Name());
             Expect(TokensJava.FI.Name());
             RaiseDetectValidInst();
         }

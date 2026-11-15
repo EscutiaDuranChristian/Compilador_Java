@@ -44,7 +44,6 @@ public class Mierco
 """;
 string codigoJava2 = """
     package automatas;
-    import java.util.Scanner;
     public class Uno{
         public double dos(int t, float c){
             return t/3+11*2-c;
@@ -54,29 +53,20 @@ string codigoJava2 = """
             char siete = (char)(obj.dos('2',0.5f));
             String cad = "SISTEMAS";
             System.out.println(siete + "BARCO".substring(3,4) + (char)81+cad.charAt(5));
-            Random random = new Random();
             Scanner sc = new Scanner();
-            int numero2 = numero1 * sc.nextInt() * Math.random();
         }
     }
     """;
 string codigo3 = """
     package automatas;
-    import java.util.Scanner;
     public class Uno{
         public double dos(int t, float c){
             return t/3+11*2-c;
         }
         public static void main(String[] args){
-            Uno obj = new Uno();
-            char siete = (char)(obj.dos('2',0.5f));
-            String cad = "SISTEMAS";
-            System.out.println(siete + "BARCO".substring(3,4) + (char)81+cad.charAt(5));
-            Random random = new Random();
-            Scanner sc = new Scanner();
-            int numero2 = numero1 * sc.nextInt() * Math.random();
+            double d = dos();
         }
     }
     """;
-Compilar.CompilarCodigo(codigo3);
+Compilar.CompilarCodigo(codigoJava2);
 Console.WriteLine(string.Join("\n", CompilerException.GetExceptions()));

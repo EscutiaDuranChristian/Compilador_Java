@@ -4,24 +4,26 @@ using Compilador_Java.Lexico.Tokens;
 using Compilador_Java.Errores;
 using Compilador_Java.Sintactico;
 using DI = Compilador_Java.Recopilar_Instrucciones.DetectorInstrucciones;
+using Compilador_Java.Semantico;
+using Compilador_Java.Recopilar_Instrucciones;
 namespace Compilador_Java.Compilacion;
 public class Compilar
 {
-    public static (bool, List<Symbol>?) CompilarCodigo(string source)
+    public static (bool, List<Symbol>?, List<Instruccion>?) CompilarCodigo(string source)
     {
         new DI();
         Depurar.Limpiar(ref source);
         if (!Depurar.ValidarEsCodigoJava(source))
         {
             CompilerException.AddException("BAD SOURCE");
-            return (false, null);
+            return (false, null, null);
         }
         var tokens = Tokenizer.TokenTable(source);
-        if(tokens == null) return (false, null);
+        if(tokens == null) return (false, null, null);
         var symbols = Symbolize.SymbolTable(tokens);
         SyntaxAnalyzer.Analizar(symbols);
-        if (CompilerException.HasExceptions()) return (false, symbols);
-        Console.WriteLine(string.Join("\n",DI.Instance!.Instrucciones));
-        return (true, symbols);
+        if (CompilerException.HasExceptions()) return (false, symbols, null);
+        SemanticAnalyzer.Start();
+        return (true, symbols, DI.Instance!.Instrucciones);
     }
 }

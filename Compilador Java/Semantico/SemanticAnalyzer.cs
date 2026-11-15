@@ -1,45 +1,29 @@
-﻿using Compilador_Java.Info_Lenguaje;
-using Compilador_Java.Recopilar_Instrucciones;
+﻿using Compilador_Java.Recopilar_Instrucciones;
+using Compilador_Java.Semantico.Analyzers;
 using DI = Compilador_Java.Recopilar_Instrucciones.DetectorInstrucciones;
 
 namespace Compilador_Java.Semantico;
-public class Analyzer
+public class SemanticAnalyzer
 {
     public static void Start()
     {
         var instrucciones = DI.Instance!.Instrucciones;
-        foreach (var instruccion in instrucciones)
+        string classname = "", parent = "";
+
+        for(int i = 0; i < instrucciones.Count; i++)
         {
-            if (instruccion.Message.Contains("Clase"))
-                Clase();
-            else if (instruccion.Message.Contains("Metodo"))
-                Metodo(instruccion);
+            if (instrucciones[i].Message.Contains("Clase"))
+                classname = ClassAnalyzer.Run(instrucciones[i]);
+            else if (instrucciones[i].Message.Contains("Metodo"))
+                parent = MethodAnalyzer.Run(instrucciones[i], classname);
+            else if (instrucciones[i].Message.Contains("DecOrObj"))
+                DecOrObjAnalyzer.Run(instrucciones[i], instrucciones[i+1], parent);
+            else if (instrucciones[i].Message == INE.METHOD_RETURN.Name())
+                ReturnAnalyzer.Run(instrucciones[i], parent);
+            else if (instrucciones[i].Message == INE.CONTENT_END.Name() ||
+                     instrucciones[i].Message == INE.BLOQUE_END.Name() ||
+                     instrucciones[i].Message == INE.METHOD_END.Name())
+                parent = classname;
         }
-    }
-    public static void Clase()
-    {
-
-    }
-    public static void Metodo(Instruccion instruction)
-    {
-        bool procParams = false;
-        string idMethod = "";
-        List<string> @params = new();
-        string valType = "";
-
-        foreach (var token in instruction.Tokens)
-        {
-            if (token.Tipo == TokensJava.PA.Name())
-                procParams = true;
-            else if (token.Tipo == TokensJava.ID.Name() &&
-                     idMethod == "")
-                idMethod = token.Lexema;
-            else if (valType == "" && token.IsTY())
-                valType = token.TD2VAL()?.Name() ?? token.Lexema;
-            if (procParams && TokenHelper.IsVAL(token.Lexema))
-                @params.Add(token.Tipo);
-
-        }
-        SystemMethods.JavaMethods.Add(idMethod, new Method(valType, new(), @params));
     }
 }

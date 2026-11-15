@@ -1,4 +1,5 @@
-﻿using Compilador_Java.Lexico.Tokens.Table;
+﻿using Compilador_Java.Lexico.Simbolos;
+using Compilador_Java.Lexico.Tokens.Table;
 using System.Text;
 
 namespace Compilador_Java.Recopilar_Instrucciones;
@@ -17,8 +18,8 @@ public class Instruccion
     {
         StringBuilder st = new();
         st.Append(Message).Append(':');
-        foreach (var token in Tokens)
-            st.Append(token).Append(" ");
+        foreach (var symbol in Tokens)
+            st.Append(symbol).Append(" ");
         return st.ToString();
     }
 }

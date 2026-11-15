@@ -10,7 +10,8 @@ public class CompilerException
             {"BAD VALUE", "Este valor resultó ser invalido: " },
             {"INVALID USE OF TYPE", "Este valor es un tipo, lo cual no esta permitido en este contexto"},
             {"BAD SOURCE", "El código fuente no es válido." },
-            { "INVALID SYNTAX", "La sintaxis del codigo no es valida: " }
+            { "INVALID SYNTAX", "La sintaxis del codigo no es valida: " },
+            { "SEMANTIC ERROR", "Error semántico encontrado: " }
         };
     private static List<(string, string)> compilation { get; } = new();
     public static void AddException(string ex, string val = "")
